@@ -13,12 +13,9 @@ function buildMainCharacter(name, age, pronouns) {
 };
 
 function saveReview(reviewText, reviews) {
-  if(reviews.indexOf(reviewText) < 0) {
+  if (reviews.indexOf(reviewText) < 0) {
     reviews.push(reviewText);
-    return reviews;
-  } else {
-    return reviews;
-  }
+  };
 };
 
 function calculatePageCount(bookTitle) {
@@ -32,12 +29,11 @@ function writeBook(bookTitle, bookCharacter, genre) {
     mainCharacter: bookCharacter,
     pageCount: calculatePageCount(bookTitle),
     genre: genre
-  }
+  };
   return book;
 };
 function editBook(book) {
-  book.pageCount = book.pageCount * 0.75;
-  return
+  book.pageCount *= 0.75;
 };
 module.exports = {
   createTitle,

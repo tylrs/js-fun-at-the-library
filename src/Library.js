@@ -1,6 +1,6 @@
-function createLibrary(name) {
+function createLibrary(libraryName) {
   var library = {};
-  library.name = name;
+  library.name = libraryName;
   library.shelves = {};
   library.shelves.fantasy = [];
   library.shelves.fiction = [];
@@ -9,22 +9,17 @@ function createLibrary(name) {
 };
 
 function addBook(library, book) {
-  for(var shelfGenre in library.shelves) {
-      if (shelfGenre === book.genre) {
-        library.shelves[shelfGenre].unshift(book);
-      }
-    }
+  library.shelves[book.genre].unshift(book);
 };
 
 function checkoutBook(library, requestedBookTitle, requestedGenreType) {
-    if (library.shelves[requestedGenreType].length === 0) {
-      return `Sorry, there are currently no copies of ${requestedBookTitle} available at the ${library.name}`;
-    } else if (library.shelves[requestedGenreType][0].title === requestedBookTitle) {
-      library.shelves[requestedGenreType].pop();
-      return `You have now checked out ${requestedBookTitle} from the ${library.name}`;
-    };
-
-};
+      for (i = 0; i < library.shelves[requestedGenreType].length; i++) {
+        if (library.shelves[requestedGenreType][i].title === requestedBookTitle) {
+          library.shelves[requestedGenreType].splice(i, 1);
+          return `You have now checked out ${requestedBookTitle} from the ${library.name}`;
+        };
+      }; return`Sorry, there are currently no copies of ${requestedBookTitle} available at the ${library.name}`;
+  };
 module.exports = {
   createLibrary,
   addBook,
